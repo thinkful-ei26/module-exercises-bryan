@@ -57,20 +57,19 @@ const shoppingList = (function(){
   }
   
   
-  function addItemToShoppingList(itemName) {
-    console.log('Validate Name Should Be', Item.validateName);
-    console.log('Item Create Should Be', Item.create);
-    console.log('Item Created Is', Item.create(itemName));
-    try {
-      Item.validateName(itemName); 
-      store.items.push(Item.create(itemName));
-      render();
-      
-      // store.items.push({ id: cuid(), name: itemName, checked: false }),
-    } catch(err) {
-      console.log('Cannot add item: {error.message}');
-    }
-  }
+  // function addItemToShoppingList(itemName) {
+  //   // console.log('Validate Name Should Be', Item.validateName);
+  //   // console.log('Item Create Should Be', Item.create);
+  //   // console.log('Item Created Is', Item.create(itemName));
+  //   try {
+  //     Item.validateName(itemName); 
+  //     store.items.push(Item.create(itemName));
+  //     render();
+  //     // store.items.push({ id: cuid(), name: itemName, checked: false }),
+  //   } catch(err) {
+  //     console.log('Cannot add item: {error.message}');
+  //   }
+  // }
  
  
   

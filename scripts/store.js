@@ -1,8 +1,21 @@
 /* eslint-disable strict */
-/* global store, cuid */
+/* global store, cuid, Item */
 /* eslint-env jquery */
 
 const store = (function () {
+  const findById = function(id) {
+    store.items.find(item => item.id === id);
+  }; // Finding itemid in array Stores.items
+  const addItem = function(name) {
+    console.log(this.items);
+    try {
+      Item.validateName(name);
+      store.items.push(Item.create(this.items));
+    } 
+    catch(error) { 
+      console.log('Cannot add item: {error.message}');
+    }
+  }
   const items = [
     // { id: cuid(), name: 'apples', checked: false },
     // { id: cuid(), name: 'oranges', checked: false },
@@ -14,7 +27,12 @@ const store = (function () {
   return {
     items,
     hideCheckedItems,
-    searchTerm
+    searchTerm,
+    findById,
+    addItem,
+    // findAndToggleChecked,
+    // findAndUpdateName,
+    // findAndDelete,
   };
 }());
 
