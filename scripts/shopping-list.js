@@ -1,5 +1,5 @@
 /* eslint-disable strict */
-/* global store, cuid */
+/* global store, cuid, Item */
 /* eslint-env jquery */
 
 // eslint-disable-next-line no-unused-vars
@@ -58,8 +58,22 @@ const shoppingList = (function(){
   
   
   function addItemToShoppingList(itemName) {
-    store.items.push({ id: cuid(), name: itemName, checked: false });
+    console.log('Validate Name Should Be', Item.validateName);
+    console.log('Item Create Should Be', Item.create);
+    console.log('Item Created Is', Item.create(itemName));
+    try {
+      Item.validateName(itemName); 
+      store.items.push(Item.create(itemName));
+      render();
+      
+      // store.items.push({ id: cuid(), name: itemName, checked: false }),
+    } catch(err) {
+      console.log('Cannot add item: {error.message}');
+    }
   }
+ 
+ 
+  
   
   function handleNewItemSubmit() {
     $('#js-shopping-list-form').submit(function (event) {
