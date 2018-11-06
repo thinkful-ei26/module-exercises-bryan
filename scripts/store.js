@@ -52,8 +52,10 @@ const store = (function () {
   };
   // Make a findAndDelete method, which accepts an id, and then removes the item from this.items. 
   // // (HINT: You can use array method .filter() or a combination of .findIndex() and .splice().)
+
   const findAndDelete = function(id) {
-    this.items.filter(!id);
+    // console.log('findAndDelete ran ', this.items.filter(x => !this.items.id.includes(id)));
+    this.items = this.items.filter(x => x.id !== id);
   };
   // Add all of these new functions to the IIFE's return object. These are all public methods.
   return {

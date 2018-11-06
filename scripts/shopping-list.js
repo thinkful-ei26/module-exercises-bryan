@@ -105,10 +105,10 @@ const shoppingList = (function(){
     });
   }
   
-  function deleteListItem(id) {
-    const index = store.items.findIndex(item => item.id === id);
-    store.items.splice(index, 1);
-  }
+  // function deleteListItem(id) {
+  //   const index = store.items.findIndex(item => item.id === id);
+  //   store.items.splice(index, 1);
+  // }
   
   // function editListItemName(id, itemName) {
   //   const item = store.items.find(item => item.id === id);
@@ -130,7 +130,7 @@ const shoppingList = (function(){
       // get the index of the item in store.items
       const id = getItemIdFromElement(event.currentTarget);
       // delete the item
-      deleteListItem(id);
+      store.findAndDelete(id);
       // render the updated shopping list
       render();
     });
