@@ -36,28 +36,29 @@ const store = (function () {
     // console.log('this.items[this.findById(id)] ' , this.findById(id));
     this.findById(id).checked = !this.findById(id).checked; 
   };
-  // Make a findAndUpdateName method, which accepts id and newName parameters. 
-  // Use a try/catch to first validate the name and then use findById() to fetch the item and update its name.
-  // //  Inside catch, log out 'Cannot update name: {error.message}'
   const findAndUpdateName = function(id, newName) {
-    // console.log('this.findById.name ', this.findById(id, newName));
     try {
       Item.validateName(newName);
       this.findById(id).name = newName;
-      // this.items.push(Item.create(id, newName));
     }
     catch(error) {
       console.log('Cannot update name: {error.message}');
     }
   };
-  // Make a findAndDelete method, which accepts an id, and then removes the item from this.items. 
-  // // (HINT: You can use array method .filter() or a combination of .findIndex() and .splice().)
 
   const findAndDelete = function(id) {
     // console.log('findAndDelete ran ', this.items.filter(x => !this.items.id.includes(id)));
     this.items = this.items.filter(x => x.id !== id);
   };
-  // Add all of these new functions to the IIFE's return object. These are all public methods.
+
+  const toggleCheckedFilter = function() {
+    this.hideCheckedItems = !this.hideCheckedItems;
+  };
+
+  const setSearchTerm = function(search) {
+    this.searchTerm = search;
+  };
+ 
   return {
     items,
     hideCheckedItems,
@@ -67,6 +68,8 @@ const store = (function () {
     findAndToggleChecked,
     findAndUpdateName,
     findAndDelete,
+    toggleCheckedFilter,
+    setSearchTerm,
   };
 }());
 
