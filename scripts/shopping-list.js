@@ -79,7 +79,7 @@ const shoppingList = (function(){
       event.preventDefault();
       const newItemName = $('.js-shopping-list-entry').val();
       $('.js-shopping-list-entry').val('');
-      addItemToShoppingList(newItemName);
+      store.addItem(newItemName);
       render();
     });
   }
@@ -139,8 +139,10 @@ const shoppingList = (function(){
   function handleEditShoppingItemSubmit() {
     $('.js-shopping-list').on('submit', '.js-edit-item', event => {
       event.preventDefault();
-      const id = store.findAndUpdateName(event.currentTarget);
-      const newName = $(event.currentTarget).find('.shopping-item').val();
+      const id = getItemIdFromElement(event.currentTarget);
+      const newName = $(event.currentTarget)
+        .find('.shopping-item')
+        .val();
       store.findAndUpdateName(id, newName);
       render();
     });
