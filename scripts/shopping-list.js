@@ -29,50 +29,22 @@ const shoppingList = (function(){
       </li>`;
   }
   
-  
   function generateShoppingItemsString(shoppingList) {
     const items = shoppingList.map((item) => generateItemElement(item));
     return items.join('');
   }
   
-  
   function render() {
-    // Filter item list if store prop is true by item.checked === false
     let items = store.items;
     if (store.hideCheckedItems) {
       items = store.items.filter(item => !item.checked);
-    }
-  
-    // Filter item list if store prop `searchTerm` is not empty
-    if (store.searchTerm) {
+    } if (store.searchTerm) {
       items = store.items.filter(item => item.name.includes(store.searchTerm));
     }
-  
-    // render the shopping list in the DOM
     console.log('`render` ran');
     const shoppingListItemsString = generateShoppingItemsString(items);
-  
-    // insert that HTML into the DOM
     $('.js-shopping-list').html(shoppingListItemsString);
   }
-  
-  
-  function addItemToShoppingList(itemName) {
-    // console.log('Validate Name Should Be', Item.validateName);
-    // console.log('Item Create Should Be', Item.create);
-    // console.log('Item Created Is', Item.create(itemName));
-    try {
-      Item.validateName(itemName); 
-      store.items.push(Item.create(itemName));
-      render();
-      // store.items.push({ id: cuid(), name: itemName, checked: false }),
-    } catch(err) {
-      console.log('Cannot add item: {error.message}');
-    }
-  }
- 
- 
-  
   
   function handleNewItemSubmit() {
     $('#js-shopping-list-form').submit(function (event) {
@@ -83,13 +55,6 @@ const shoppingList = (function(){
       render();
     });
   }
-  
-  function toggleCheckedForListItem(id) {
-    // const foundItem = store.items.find(item => item.id === id);
-    // foundItem.checked = !foundItem.checked;
-    store.findAndToggleChecked(id);
-  }
-  
   
   function getItemIdFromElement(item) {
     return $(item)
@@ -149,7 +114,6 @@ const shoppingList = (function(){
     handleShoppingListSearch();
   }
 
-  // This object contains the only exposed methods from this module:
   return {
     render: render,
     bindEventListeners: bindEventListeners,

@@ -30,12 +30,11 @@ const store = (function () {
     }
   };
 
-
   const findAndToggleChecked = function(id) {
     console.log('this.findById(id) is here ', this.findById(id));
-    // console.log('this.items[this.findById(id)] ' , this.findById(id));
     this.findById(id).checked = !this.findById(id).checked; 
   };
+
   const findAndUpdateName = function(id, newName) {
     try {
       Item.validateName(newName);
@@ -47,7 +46,6 @@ const store = (function () {
   };
 
   const findAndDelete = function(id) {
-    // console.log('findAndDelete ran ', this.items.filter(x => !this.items.id.includes(id)));
     this.items = this.items.filter(x => x.id !== id);
   };
 
